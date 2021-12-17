@@ -1,0 +1,21 @@
+{
+  "name": "doodle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ShaimaaAliECE/lab3-garethlau.git",
+  "author": "Gareth Lau <gareth.kh.lau@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start-client": "yarn --cwd client start",
+    "start-server": "yarn --cwd server start",
+    "start": "concurrently \"yarn start-server\" \"yarn start-client\"",
+    "build-client": "yarn --cwd client build",
+    "build-server": "yarn --cwd server build",
+    "build": "concurrently \"yarn build-server\" \"yarn build-client\"",
+    "lint-server": "yarn --cwd server lint",
+    "lint": "yarn lint-server"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0"
+  }
+}

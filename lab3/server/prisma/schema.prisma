@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+  Poll     Poll[]
+}
+
+model Poll {
+  id        String     @id @default(cuid())
+  date      String
+  timeslots Timeslot[]
+  creator   User       @relation(fields: [userId], references: [id])
+  userId    Int
+  responses Response[]
+
+}
+
+model Response {
+  id        Int        @id @default(autoincrement())
+  author    String
+  timeslots Timeslot[]
+
+  Poll   Poll?   @relation(fields: [pollId], references: [id])
+  pollId String?
+}
+
+model Timeslot {
+  id          String @id @default(cuid())
+  startHour   Int
+  startMinute Int
+  endHour     Int
+  endMinute   Int
+
+  Poll       Poll?     @relation(fields: [pollId], references: [id])
+  pollId     String?
+  Response   Response? @relation(fields: [responseId], references: [id])
+  responseId Int?
+}

@@ -1,0 +1,21 @@
+{
+  "name": "se3316-lab4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-client": "yarn --cwd client start",
+    "start-server": "yarn --cwd server start",
+    "start": "concurrently \"yarn start-server\" \"yarn start-client\"",
+    "build-client": "yarn --cwd client build",
+    "build-server": "yarn --cwd server build",
+    "build": "concurrently \"yarn build-server\" \"yarn build-client\"",
+    "lint-server": "yarn --cwd server lint",
+    "lint": "yarn lint-server"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
